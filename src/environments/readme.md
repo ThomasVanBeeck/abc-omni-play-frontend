@@ -2,6 +2,10 @@
 
 The `environment` object contains configuration settings used by the application. Below is an explanation of each key:
 
+
+
+** The environment files are left out of the repository for obvious reasons! **
+
 1. **production**:
 
    - Description: A boolean flag indicating whether the application is running in production mode (`true`) or development mode (`false`).
