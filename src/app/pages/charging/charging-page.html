@@ -1,0 +1,13 @@
+<ion-header *transloco="let t">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button />
+    </ion-buttons>
+    <ion-title>{{ t("charging") }}</ion-title>
+  </ion-toolbar>
+  <app-connectivity-error />
+</ion-header>
+
+<ion-content *ngIf="url">
+  <iframe [src]="url | safe" class="w-full h-full"></iframe>
+</ion-content>

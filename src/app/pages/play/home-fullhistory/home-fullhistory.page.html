@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <div *ngIf="profileInfo$ | async as profileInfo; else loadingIndicator">
+    <app-tabs-summary></app-tabs-summary>
+    <h1>{{ profileInfo.firstName }} {{ profileInfo.lastName }}</h1>
+    <h2 class="xp-styling">
+      <fa-icon class="p-1" [icon]="faStar" size="1x"></fa-icon>
+      XP: {{ profileInfo.experiencePoints }}
+    </h2>
+
+    <h2 class="bottom1px">Full History</h2>
+  </div>
+</ion-header>
+
+<ion-content
+  [scrollEvents]="true"
+  *ngIf="userActivitiesWithScores$ | async as activities; else loadingIndicator"
+>
+  <div *ngIf="userInfo$ | async as userInfo; else loadingIndicator">
+    <ng-container *ngIf="activities && activities.length > 0; else noContent">
+      <ul class="activities">
+        <li *ngFor="let activity of activities">
+          <a href="play/activity-details/{{ activity.id }}">
+            <span class="field">{{ activity.name }}</span>
+            <span class="field">
+              {{ activity.result }}
+              <fa-icon
+                class="p-1, infocircle"
+                [ngClass]="userInfo.id == activity.ownerId ? 'logo-yellow' : 'logo-blue'"
+                [icon]="faInfoCircle"
+                size="1x"
+              ></fa-icon>
+            </span>
+          </a>
+        </li>
+      </ul>
+      <ion-infinite-scroll threshold="20px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingText="Please wait..."
+          loadingSpinner="bubbles"
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ng-container>
+  </div>
+</ion-content>
+
+<ng-template #loadingIndicator>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<ng-template #noContent>
+  <h2 class="nocontent">(No content)</h2>
+</ng-template>

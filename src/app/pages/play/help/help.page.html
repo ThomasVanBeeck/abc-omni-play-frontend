@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <h2 class="bottom1px">User Manual</h2>
+</ion-header>
+<ion-content>
+  <h3 id="gettingstarted">Getting Started</h3>
+  <p class="morepaddingtop">
+    <strong>PLAY Introduction:</strong><br />
+    PLAY, integrated within the ABC-Omni application, offers employees an easy
+    way to publish and manage company activities. It enables users to browse
+    available events, confirm participation, and record scores. Each user
+    accumulates experience points, encouraging interaction and simplifying the
+    planning and execution of employee activities.
+  </p>
+
+  <p class="morepaddingtop">
+    <strong>Symbols:</strong><br />
+    <fa-icon class="p-1 infocircle" [icon]="faInfoCircle" size="1x"></fa-icon
+    >&nbsp; <strong>Default User Symbol:</strong><br />
+    This symbol represents individual users. It appears in all lists throughout
+    the application, indicating that tapping it will reveal more detailed
+    information about that specific user.<br /><br />
+
+    <fa-icon
+      class="p-1, infocircle, logo-blue"
+      [icon]="faInfoCircle"
+      size="1x"
+    ></fa-icon
+    >&nbsp; <strong>Blue Activity Symbol:</strong><br />
+    This symbol is used to represent activities. Found in all activity lists,
+    tapping this symbol provides access to more detailed information about the
+    activity.<br /><br />
+
+    <fa-icon
+      class="p-1, infocircle, logo-yellow"
+      [icon]="faInfoCircle"
+      size="1x"
+    ></fa-icon
+    >&nbsp; <strong>Yellow Ownership Symbol:</strong><br />
+    This symbol indicates that you are the owner of an activity. Activities that
+    you do not own are marked with a blue symbol.<br /><br />
+
+    <fa-icon class="p-1 xp-styling" [icon]="faStar" size="1x"></fa-icon>&nbsp;
+    <strong>Experience Points (XP) Symbol:</strong><br />
+    This star symbol denotes Experience Points (XP). It is typically associated
+    with user profiles or score displays, indicating accumulated XP.<br /><br />
+  </p>
+
+  <h3 id="home"><b>Home</b></h3>
+
+  <p class="morepaddingtop">
+    <strong>Summary:</strong><br />
+    This screen provides a quick overview of your most recent upcoming
+    activities and your recent history.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Full Schedule:</strong><br />
+    View all your upcoming activities here, including those you're participating
+    in and those you've published.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Full History:</strong><br />
+    This screen displays all activities you've taken part in, along with the
+    final results you achieved.
+  </p>
+
+  <h3 id="activities"><b>Activities</b></h3>
+  <p class="morepaddingtop">
+    <strong>Activities Overview:</strong><br />
+    This screen displays all publicly available upcoming activities. Tap any
+    activity in the list to view its detailed overview. To add a new activity,
+    simply tap the corresponding button at the top of the screen.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Details:</strong><br />
+    You can navigate to an activity's details screen by tapping an activity
+    which is shown in the Activities overview or by looking at the different
+    Home screens, such as Summary, Full Schedule and Full History screens.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Participating:</strong><br />
+    If you want to participate, navigate to the details screen of the activity
+    and tap the corresponding button to join an activity.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Leaving:</strong><br />
+    Once you have joined an activity, you can cancel your participation by
+    tapping the corresponding button to leave the activity. This button can be
+    found at the details screen and replaces the button that is used to join an
+    activity.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Create/Edit Activity:</strong><br />
+    Fill in all fields with the correct details. When you're done, tap the
+    button at the top to publish or save your changes.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Cancel Activity:</strong><br />
+    To cancel an activity, first navigate to its detailed overview screen. Tap
+    the "Edit Activity" button at the top. On the next screen, you'll find a
+    "Cancel Activity" button (which replaces the "Cancel" button shown during
+    creation). Tap this button to cancel your activity. WARNING: Once an
+    activity is cancelled, it cannot be recovered.
+  </p>
+  <p class="morepaddingtop">
+    <strong>Remove Participants:</strong><br />
+    From your activity's details screen, you can remove users. Locate the
+    participant list at the bottom, then tap the red icon beside the user you
+    want to remove.
+  </p>
+  <p class="morepaddingtop" id="enter-scores">
+    <strong>Enter Scores:</strong><br />
+    Activity owners are responsible for entering scores once an activity ends.
+    To do so, navigate to your activity's details screen and tap the designated
+    button. For team activities, begin by filling in the team results, then
+    accurately assign each participant to their respective team. For individual
+    activities, establish the ranking for every participant. Double-check all
+    entries for accuracy before submission.
+  </p>
+
+  <h3 id="users"><b>Users</b></h3>
+  <p class="morepaddingtop">
+    <strong>Users Overview:</strong><br />
+    This screen displays a list of all registered users. Tap any user in the
+    list to navigate to their specific profile, where you can view their
+    Summary, Full Schedule, and Full History.
+  </p>
+
+  <h3 id="scores"><b>Scores</b></h3>
+  <p class="morepaddingtop">
+    <strong>Scores Overview:</strong><br />
+    This screen displays a list of all registered users. Tap any user in the
+    list to navigate to their specific profile, where you can view their
+    Summary, Full Schedule, and Full History.
+  </p>
+
+  <h3 id="rankings"><b>Rankings</b></h3>
+  <p class="morepaddingtop">
+    <strong>Ranked by XP:</strong><br />
+    This screen presents a global ranking of users based on their accumulated
+    experience points (XP). Users are ordered from the highest to the lowest XP,
+    reflecting their overall performance across all activities they've
+    participated in.
+  </p>
+</ion-content>

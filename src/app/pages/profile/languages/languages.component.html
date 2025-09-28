@@ -1,0 +1,23 @@
+<ion-list *transloco="let t" class="bg-transparent" lines="none">
+  <div *ngFor="let lang of languages" class="py-2 px-2 bg-transparent text-gray-500">
+    <h2 class="text-2xl dark:text-white text-black">{{ lang.language }}</h2>
+    <div class="flex flex-row justify-between align-middle w-full">
+      <p>{{ t("profile.content.speaking") }}</p>
+      <div class="flex flex-row">
+        <fa-icon *ngFor="let i of[].constructor(lang.speakingLevel)" [icon]="faStar" class="text-yellow-400" />
+      </div>
+    </div>
+    <div class="flex flex-row justify-between align-middle w-full">
+      <p>{{ t("profile.content.reading") }}</p>
+      <div class="flex flex-row">
+        <fa-icon *ngFor="let i of[].constructor(lang.readingLevel)" [icon]="faStar" class="text-yellow-400" />
+      </div>
+    </div>
+    <div class="flex flex-row justify-between align-middle w-full">
+      <p>{{ t("profile.content.writing") }}</p>
+      <div class="flex flex-row">
+        <fa-icon *ngFor="let i of[].constructor(lang.writingLevel)" [icon]="faStar" class="text-yellow-400" />
+      </div>
+    </div>
+  </div>
+</ion-list>

@@ -1,0 +1,145 @@
+<div *transloco="let t">
+  <ion-card
+    *ngIf="!!fleetDriver && !!dropDownCards"
+    [class]="fleetDriver.active ? '' : 'blur-sm'"
+  >
+    <ion-card-header>
+      <ion-card-title
+        class="flex"
+        (click)="onClickDropDownCard('carDriver')"
+      >
+        <div class="text-2xl font-bold mr-2 z-10 text-left flex-1">
+          <fa-icon
+            class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+            [icon]="faIdCard"
+            slot="start"
+          ></fa-icon>
+          {{t('fleet.content.driver.title')}}
+        </div>
+        <div class="text-right flex-1">
+          <fa-icon
+            class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+            [icon]="dropDownCards['carDriver'] ? dropDownActive : dropDownInactive"
+            slot="end"
+          ></fa-icon>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content
+      *ngIf="dropDownCards['carDriver']"
+      class="min-w-full min-h-20 p-2 flex justify-center mb-2"
+    >
+      <div class="relative min-w-full">
+        <ion-item-group class="rounded-md">
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.name')}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{ fleetDriver.firstName }}
+                  {{ fleetDriver.lastName }}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.email')}}</h2>
+              <p>
+                <ion-note slot="end">{{ fleetDriver.email }}</ion-note>
+              </p>
+            </ion-label>
+            <fa-icon
+              class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+              [icon]="copyClipboard"
+              (click)="writeToClipboard(fleetDriver.email)"
+              slot="end"
+            ></fa-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.address')}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{ fleetDriver.residence || t('noData') }}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+            <fa-icon
+              class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+              [icon]="copyClipboard"
+              (click)="writeToClipboard(fleetDriver.residence)"
+              slot="end"
+            ></fa-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.fuelCard')}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{ fleetDriver.fuelCard ? t('yes') : t('no') }}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="!!fleetDriver.fuelCard">
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.driver.fuelCardId')}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{ fleetDriver.fuelCard.cardNumber }}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+            <fa-icon
+              class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+              [icon]="copyClipboard"
+              (click)="writeToClipboard(fleetDriver.fuelCard.cardNumber)"
+              slot="end"
+            ></fa-icon>
+          </ion-item>
+          <ion-item *ngIf="!!fleetDriver.fuelCard">
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.driver.fuelCardActiviationDate')}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{ fleetDriver.fuelCard.activationDate }}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+            <fa-icon
+              class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+              [icon]="copyClipboard"
+              (click)="writeToClipboard(fleetDriver.fuelCard.activationDate)"
+              slot="end"
+            ></fa-icon>
+          </ion-item>
+          <ion-item *ngIf="!!fleetDriver.fuelCard">
+            <ion-label class="ion-text-wrap">
+              <h2>{{t('fleet.content.driver.fuelCardExpirationDate')}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{ fleetDriver.fuelCard.expirationDate }}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+            <fa-icon
+              class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+              [icon]="copyClipboard"
+              (click)="writeToClipboard(fleetDriver.fuelCard.expirationDate)"
+              slot="end"
+            ></fa-icon>
+          </ion-item>
+        </ion-item-group>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</div>

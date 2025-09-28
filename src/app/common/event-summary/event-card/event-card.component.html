@@ -1,0 +1,9 @@
+<div (click)="navigateToDetails()" class="flex flex-row gap-1 w-full">
+  <div [style.background-color]="'#'+event.eventColor" class="w-[5px] rounded-xl">
+
+  </div>
+  <div [style.background-color]="'#'+event.eventColor+'40'" class="shadow-zinc-600 bg-opacity-25 px-2 rounded w-full">
+    <div class="dark:text-white text-black text-lg text-overflow">{{ event.title }}</div>
+    <ion-text class="text-gray-500">{{ eventTimes.join(" - ") }}</ion-text>
+  </div>
+</div>

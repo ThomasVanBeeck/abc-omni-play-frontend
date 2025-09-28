@@ -1,0 +1,10 @@
+<div *ngIf="!birthdaysLoading">
+  <div *transloco="let t">
+    <p class="font-bold text-2xl text-center pt-4">{{ t("birthdays") }}</p>
+    <swiper-container slides-per-view="{{1}}" autoplay-delay="2000" autoplay-disable-on-interaction="false" pagination="{{true}}" pagination-clickable="{{true}}">
+      <swiper-slide class="text-center flex flex-row justify-center" *ngFor="let birthDay of birthdays">
+        <app-birthday-card class="p-2 mb-4" [birthdayProfile]="birthDay"/>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</div>

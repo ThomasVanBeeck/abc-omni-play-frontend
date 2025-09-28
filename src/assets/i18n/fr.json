@@ -1,0 +1,165 @@
+{
+  "welcome": "Bienvenue {{name}}!",
+  "my_car": "Ma voiture",
+  "everything_about_my_car": "Tout sur ma voiture",
+  "my_profile": "Mon profil",
+  "me_and_my_career": "Moi et ma carrière",
+  "my_colleagues": "Mes collègues",
+    "my_activities": "Activités",
+  "competitive_activities": "Participe!",
+  "who_is_who": "Qui est qui",
+  "vcard": "Carte de visite",
+  "settings": "Paramètres",
+  "manager": "Manager",
+  "back": "Retour",
+  "colleagues": "Collègues",
+  "search": "Rechercher",
+  "logout": "Se déconnecter",
+  "welcome_message": "Bienvenue chez ABC-Omni, le groupe ABC à portée de main.",
+  "get_started": "Commencer",
+  "offline_message": "Vous êtes hors ligne. Vérifiez votre connexion internet.",
+  "speaking": "Parler",
+  "reading": "Lire",
+  "writing": "Écrire",
+  "intranet": {
+    "news": {
+      "recentNews": "Actualités récentes",
+      "otherNews": "Autres actualités",
+      "detailsTitle": "Détails de l'actualité",
+      "author": "Auteur",
+      "views": "Vues",
+      "commentCount": "Commentaires",
+      "photoCommentCount": "Commentaires photo",
+      "content": {
+        "noNews": "Aucune actualité trouvée",
+        "readMore": "Lire la suite"
+      }
+    }
+  },
+  "profile": {
+    "header": {
+      "title": "Mon profil",
+      "subtitle": "Moi et ma carrière"
+    }
+    },
+  "fleet": {
+    "header": {
+      "title": "Ma voiture"
+    },
+    "content": {
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "fuelCard": "Carte carburant",
+      "inactive": "Inactif",
+      "error": {
+        "contactHR": "Veuillez contacter les ressources humaines pour activer votre"
+      },
+      "car": {
+        "notifications": {
+          "inspection": {
+            "lateInspectionDescription": "Vous avez dépassé la date de votre contrôle technique! Prenez rendez-vous!",
+            "lateInspectionTitle": "Contrôle technique",
+            "dueInspectionDescription": "Il vous reste moins de 5 mois ou 1000 km pour votre contrôle technique! Prenez rendez-vous!",
+            "dueInspectionTitle": "Contrôle technique"
+          },
+          "maintenance": {
+            "lateMaintenanceDescription": "Vous avez dépassé la date de votre entretien! Prenez rendez-vous!",
+            "lateMaintenanceTitle": "Entretien",
+            "dueMaintenanceDescription": "Il vous reste moins de 5 mois ou 1000 km pour votre entretien! Prenez rendez-vous!",
+            "dueMaintenanceTitle": "Entretien"
+          },
+          "leasingContract": {
+            "dueLeasingContractDescription": "Votre contrat de leasing arrive bientôt à échéance! Contactez les RH!",
+            "dueLeasingContractTitle": "Contrat de leasing",
+            "lateLeasingContractDescription": "Votre contrat de leasing est expiré! Contactez les RH!",
+            "lateLeasingContractTitle": "Contrat de leasing"
+          },
+          "noCar": {
+            "noCarDescription": "Vous n'avez pas de voiture attribuée! Contactez les RH!",
+            "noCarTitle": "Pas de voiture attribuée"
+          }
+        },
+        "car": "voiture",
+        "noCar": "Vous n'avez pas de voiture attribuée",
+        "carType": {
+          "company": "Voiture de société",
+          "leasing": "Voiture de leasing",
+          "unknown": "Inconnu"
+        },
+        "allSet": "Tout est en ordre",
+        "lastUpdate": "Dernière mise à jour: {{lastMileageUpdatedAt}}",
+        "nextInspection": "Prochain contrôle technique",
+        "nextService": "Prochain entretien",
+        "nextServiceInKm": "Prochain entretien (km)"
+      },
+      "attachment": {
+        "title": "Pièces jointes"
+      },
+      "driver": {
+        "title": "Conducteur",
+        "fuelCardId": "Carte carburant",
+        "fuelCardActiviationDate": "Date d'activation",
+        "fuelCardExpirationDate": "Date d'expiration"
+      },
+      "carInfo": {
+        "registrationPlate": "Plaque d'immatriculation",
+        "brandAndModel": "Marque et modèle",
+        "chassisNumber": "Numéro de châssis",
+        "firstRegistrationDate": "Date de première immatriculation",
+        "engineType": "Type de moteur",
+        "enginePower": "Puissance du moteur",
+        "tireLocation": "Emplacement des pneus",
+        "tireInformation": "Informations sur les pneus",
+        "tireType": "Type de pneu",
+        "spireKeyLocation": "Emplacement de la clé de roue",
+        "purchaseDate": "Date d'achat",
+        "catalogValue": "Valeur catalogue",
+        "purchaseCost": "Coût d'achat",
+        "insuranceCompany": "Compagnie d'assurance",
+        "insuranceContractNumber": "Numéro de contrat d'assurance",
+        "insuranceContractEndDate": "Date de fin de contrat d'assurance",
+        "extraInfo": "Informations supplémentaires",
+        "inspectionEndDate": "Date de fin de contrôle technique",
+        "itemGroups": {
+          "carDetails": "Détails de la voiture",
+          "tires": "Pneus",
+          "keys": "Clés",
+          "extraInformation": "Informations supplémentaires",
+          "insurance": "Assurance",
+          "owner": "Propriétaire",
+          "garage": "Garage",
+          "leasingCompany": "Société de leasing"
+        }
+      }
+    }
+  },
+  "noData": "Valeur manquante pour 'noData'",
+  "language": "Langue",
+  "languageDescription": "Changer la langue",
+  "mute": "Autoriser les notifications",
+  "muteDescription": "Désactiver les notifications",
+  "years": "Valeur manquante pour 'years'",
+  "year": "Valeur manquante pour 'year'",
+  "months": "Valeur manquante pour 'months'",
+  "month": "Valeur manquante pour 'month'",
+  "and": "Valeur manquante pour 'and'",
+  "yes": "Oui",
+  "no": "Non",
+  "languageKeys": {
+    "nl": "Néerlandais",
+    "en": "Anglais",
+    "fr": "Français"
+  },
+  "days": {
+    "sunday": "Dimanche",
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi"
+  },
+  "tomorrow": "Demain"
+}

@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <div class="flexbuttons">
+    <ion-button
+      class="flexbuttons green-button"
+      fill="solid"
+      (click)="saveAlert()"
+    >
+      Save Changes
+    </ion-button>
+  </div>
+  <h2 class="bottom1px">Activity Scores</h2>
+</ion-header>
+<ion-content>
+  <ng-container
+    *ngIf="activityInfo$ | async as activity; else loadingIndicator"
+  >
+    <ion-label>Activity Name: </ion-label>
+    <p class="like-ion-input">{{ activity.name }}</p>
+
+    <ion-list *ngFor="let team of localTeams; let i = index">
+      <ion-label position="inline">Team {{ team.teamnr }}</ion-label>
+      <ion-select
+        interface="popover"
+        [(ngModel)]="team.result"
+        placeholder="Select result"
+      >
+        <ion-select-option
+          *ngFor="let result of localTeamResults"
+          [value]="result"
+        >
+          {{ result }}
+        </ion-select-option>
+      </ion-select>
+    </ion-list>
+  </ng-container>
+  <ng-container *ngIf="localSubmitScores && localSubmitScores.length > 0">
+    <ul class="activities">
+      <li class="scores" *ngFor="let submitScore of localSubmitScores">
+        <span class="field" style="width: 230px">
+          {{ submitScore.user.firstName }} {{ submitScore.user.lastName }}
+        </span>
+        <span>
+          <ion-label>Result:</ion-label>
+          <ion-select
+            interface="popover"
+            [(ngModel)]="submitScore.content"
+            placeholder="?"
+          >
+            <ng-container *ngIf="!hasRanking">
+              <ion-select-option
+                *ngFor="let team of localTeams"
+                [value]="team.teamnr"
+              >
+                Team {{team.teamnr }}
+              </ion-select-option>
+            </ng-container>
+            <ng-container *ngIf="hasRanking">
+              <ion-select-option
+                *ngFor="let result of localRankingResults"
+                [value]="result"
+              >
+                {{ result }}
+              </ion-select-option>
+            </ng-container>
+          </ion-select>
+        </span>
+      </li>
+    </ul>
+  </ng-container>
+</ion-content>
+
+<ng-template #loadingIndicator>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>

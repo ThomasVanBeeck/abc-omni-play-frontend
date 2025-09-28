@@ -1,0 +1,24 @@
+<div
+  (click)="handleClick()"
+  class="pointer-events-none relative mb-2 inset-x-0 sm:flex sm:justify-center sm:px-6 sm:pb-5 lg:px-8"
+  *ngIf="typeNotification !== undefined && background() !== undefined"
+>
+  <div
+    class="pointer-events-auto flex items-center rounded-md justify-between gap-x-6 {{
+      background()
+    }} px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5"
+    *ngIf="faIcon !== undefined"
+  >
+    <fa-icon
+      class="p-1 dark:text-gray-400 text-white"
+      [icon]="faIcon!"
+      size="2x"
+    ></fa-icon>
+    <p class="text-sm leading-6 text-white">
+      <span>
+        <strong class="font-semibold">{{ title }}&nbsp;</strong>
+        <span class="font-normal">{{ description }}</span>
+      </span>
+    </p>
+  </div>
+</div>

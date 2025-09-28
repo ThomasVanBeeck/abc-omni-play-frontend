@@ -1,0 +1,5 @@
+<div *ngIf="!isOnline">
+  <div *transloco="let t" class="text-center bg-red-500" role="alert">
+    {{ t('offline_message') }}
+  </div>
+</div>

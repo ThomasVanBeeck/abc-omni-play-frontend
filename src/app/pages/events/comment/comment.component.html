@@ -1,0 +1,7 @@
+<div class="{{isParent ? 'rounded-xl border border-gray-500 px-3' : '' }} flex flex-col">
+  <ion-text>{{ !isParent ? '>' : '' }} {{ comment!.content }}</ion-text>
+  <ion-text class="text-gray-400">{{ date }}</ion-text>
+  <div class="px-2">
+    <app-comment *ngFor="let subComment of comment.children" [comment]="subComment" [isParent]="false" />
+  </div>
+</div>

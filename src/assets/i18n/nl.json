@@ -1,0 +1,228 @@
+{
+  "play_home": "Home",
+  "play_activities": "Activiteiten",
+  "play_rankings": "Scorebord",
+  "play_users": "Gebruikers",
+  "play_help": "Help",
+  "welcome": "Welkom {{name}}!",
+  "my_car": "Mijn auto",
+  "everything_about_my_car": "Alles over mijn auto",
+  "my_colleagues": "Mijn collega's",
+  "my_activities": "Doe mee!",
+  "competitive_activities": "Activiteiten",
+  "who_is_who": "Wie is wie",
+  "vcard": "Visitekaart",
+  "settings": "Instellingen",
+  "manager": "Manager",
+  "back": "Terug",
+  "colleagues": "Collega's",
+  "search": "Zoeken",
+  "logout": "Uitloggen",
+  "welcome_message": "Welkom bij ABC-Omni, ABC-Groep binnen handbereik.",
+  "get_started": "Aan de slag",
+  "offline_message": "Je bent offline. Controleer je internetverbinding.",
+  "birthdays": "Verjaardagen",
+  "sorting": "Sorteren",
+  "profile": {
+    "header": {
+      "title": "Mijn profiel",
+      "subtitle": "Ik en mijn carrière"
+    },
+    "title": "Profiel",
+    "content": {
+      "name": "Naam",
+      "email": "Email",
+      "mobile": "Mobiel",
+      "phone": "Telefoonnummer",
+      "address": "Adres",
+      "languages": "Talen",
+      "speaking": "Spreken",
+      "reading": "Lezen",
+      "writing": "Schrijven"
+    }
+  },
+  "intranet": {
+    "news": {
+      "recentNews": "Recent nieuws",
+      "otherNews": "Andere nieuwsberichten",
+      "detailsTitle": "Nieuwsbericht",
+      "author": "Auteur",
+      "views": "Aantal keer bekeken",
+      "commentCount": "Aantal reacties",
+      "photoCommentCount": "Aantal foto's",
+      "content": {
+        "noNews": "Geen nieuws",
+        "readMore": "Lees meer"
+      }
+    }
+  },
+  "fleet": {
+    "header": {
+      "title": "Mijn auto"
+    },
+    "content": {
+      "name": "Naam",
+      "email": "E-mail",
+      "address": "Adres",
+      "phone": "Telefoon",
+      "fuelCard": "Tankkaart",
+      "inactive": "Inactief",
+      "error": {
+        "contactHR": "Neem contact op met HR om uw"
+      },
+      "car": {
+        "notifications": {
+          "inspection": {
+            "lateInspectionDescription": "U bent te laat voor uw autokeuring! Neem contact op met HR!",
+            "lateInspectionTitle": "Keuring te laat",
+            "dueInspectionDescription": "Er is minder dan 5 maanden of 1000 km over voor uw autokeuring! Maak een afspraak!",
+            "dueInspectionTitle": "Keuring binnenkort"
+          },
+          "maintenance": {
+            "lateMaintenanceDescription": "U bent te laat voor uw auto-onderhoud! Maak een afspraak!",
+            "lateMaintenanceTitle": "Onderhoud te laat",
+            "dueMaintenanceDescription": "Er is minder dan 5 maanden of 1000 km over voor uw auto-onderhoud! Maak een afspraak!",
+            "dueMaintenanceTitle": "Onderhoud binnenkort"
+          },
+          "leasingContract": {
+            "dueLeasingContractDescription": "Uw leasecontract verloopt binnenkort! Neem contact op met HR!",
+            "dueLeasingContractTitle": "Leasecontract binnenkort",
+            "lateLeasingContractDescription": "Uw leasecontract is verlopen! Neem contact op met HR!",
+            "lateLeasingContractTitle": "Leasecontract verlopen"
+          },
+          "noCar": {
+            "noCarDescription": "U heeft geen auto toegewezen. Neem contact op met HR als dat niet klopt!",
+            "noCarTitle": "Geen auto"
+          }
+        },
+        "car": "auto",
+        "noCar": "Geen auto",
+        "carType": {
+          "company": "Bedrijfsauto",
+          "leasing": "Leaseauto",
+          "unknown": "Onbekend"
+        },
+        "allSet": "Alles in orde",
+        "lastUpdate": "Laatst bijgewerkt: {{lastMileageUpdatedAt}}",
+        "nextInspection": "Volgende keuring",
+        "nextService": "Volgende service",
+        "nextServiceInKm": "Volgende service in km"
+      },
+      "attachment": {
+        "title": "Bijlagen"
+      },
+      "driver": {
+        "title": "Bestuurder",
+        "fuelCardId": "Tankkaartnummer",
+        "fuelCardActiviationDate": "Tankkaart activeringsdatum",
+        "fuelCardExpirationDate": "Tankkaart vervaldatum"
+      },
+      "carInfo": {
+        "registrationPlate": "Kenteken",
+        "brandAndModel": "Merk en model",
+        "chassisNumber": "Chassisnummer",
+        "firstRegistrationDate": "Eerste registratiedatum",
+        "engineType": "Motortype",
+        "enginePower": "Motorvermogen",
+        "tireLocation": "Bandenlocatie",
+        "tireInformation": "Bandeninformatie",
+        "tireType": "Bandtype",
+        "spireKeyLocation": "Reservewiellocatie",
+        "purchaseDate": "Aankoopdatum",
+        "catalogValue": "Cataloguswaarde",
+        "purchaseCost": "Aankoopprijs",
+        "insuranceCompany": "Verzekeringsmaatschappij",
+        "insuranceContractNumber": "Verzekeringscontractnummer",
+        "insuranceContractEndDate": "Verzekeringscontract einddatum",
+        "extraInfo": "Extra informatie",
+        "inspectionEndDate": "Keuringsdatum",
+        "itemGroups": {
+          "carDetails": "Auto details",
+          "tires": "Banden",
+          "keys": "Sleutels",
+          "extraInformation": "Extra informatie",
+          "insurance": "Verzekering",
+          "owner": "Eigenaar",
+          "garage": "Garage",
+          "leasingCompany": "Leasemaatschappij"
+        }
+      }
+    }
+  },
+  "noData": "Geen gegevens",
+  "language": "Taal",
+  "languageDescription": "Kies uw taal",
+  "mute": "Notificaties Dempen",
+  "muteDescription": "U kunt de notificaties dempen",
+  "years": "jaren",
+  "year": "jaar",
+  "month": "maand",
+  "and": "en",
+  "yes": "Ja",
+  "no": "Nee",
+  "charging": "Laadpaal reserveren",
+  "timesheet": "Timesheet",
+  "doctor": "Doktersbriefje uploaden",
+  "insurance": "Verzekeringsnummer",
+  "is_not_available": "is niet beschikbaar",
+  "languageKeys": {
+    "nl": "Nederlands",
+    "en": "English",
+    "fr": "Français"
+  },
+  "days": {
+    "short": {
+      "sunday": "Zo",
+      "monday": "Ma",
+      "tuesday": "Di",
+      "wednesday": "Wo",
+      "thursday": "Do",
+      "friday": "Vr",
+      "saturday": "Za"
+    },
+    "sunday": "Zondag",
+    "monday": "Maandag",
+    "tuesday": "Dinsdag",
+    "wednesday": "Woensdag",
+    "thursday": "Donderdag",
+    "friday": "Vrijdag",
+    "saturday": "Zaterdag"
+  },
+  "tomorrow": "Morgen",
+  "no_events_tomorrow": "Geen act. morgen",
+  "no_events_soon": "Geen act. binnenkort",
+  "months": {
+    "value": "maanden",
+    "short": {
+      "january": "Jan",
+      "february": "Feb",
+      "march": "Mrt",
+      "april": "Apr",
+      "may": "Mei",
+      "june": "Jun",
+      "july": "Jul",
+      "august": "Aug",
+      "september": "Sep",
+      "october": "Okt",
+      "november": "Nov",
+      "december": "Dec"
+    },
+    "january": "Januari",
+    "february": "Februari",
+    "march": "Maart",
+    "april": "April",
+    "may": "Mei",
+    "june": "Juni",
+    "july": "Juli",
+    "august": "Augustus",
+    "september": "September",
+    "october": "Oktober",
+    "november": "November",
+    "december": "December"
+  },
+  "respond_not_going": "Ik zal er niet zijn",
+  "respond_going": "Ik zal er zijn",
+  "event": "Evenement",
+  "not_going_response": "Antwoord: Ik zal er niet zijn werd verstuurd",
+  "going_response": "Antwoord: Ik zal er zijn werd verstuurd"
+}

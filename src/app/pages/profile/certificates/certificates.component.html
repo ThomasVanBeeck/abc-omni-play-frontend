@@ -1,0 +1,6 @@
+<ion-list class="bg-transparent" lines="none">
+  <div *ngFor="let cert of certificates" class="py-2 px-2 bg-transparent ">
+    <h2>{{ cert.certificate.name }}</h2>
+    <p class="dark:text-gray-400 text-gray-600">{{ cert.dateObtained }}</p>
+  </div>
+</ion-list>

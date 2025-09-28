@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <div *ngIf="activityInfo$ | async as activity; else loadingIndicator">
+    <ng-container
+      *ngIf="activity.activityStatus == 'OPEN' || activity.activityStatus == 'FULL'"
+    >
+      <div *ngIf="userInfo$ | async as userInfo">
+        <div class="flexbuttons">
+          <ion-button
+            *ngIf="userInfo.id == activity.ownerDTO.id || ['ADMIN','SUPERADMIN'].includes(userInfo.appRole)"
+            class="yellow-button"
+            fill="solid"
+            [routerLink]="['/play/activity-form', activity.id]"
+          >
+            Edit Activity
+          </ion-button>
+          <ion-button
+            *ngIf="userInfo.id == activity.ownerDTO.id || ['ADMIN','SUPERADMIN'].includes(userInfo.appRole)"
+            class="yellow-button"
+            fill="solid"
+            [routerLink]="['/play/scores-form', activity.id]"
+          >
+            Enter Scores
+          </ion-button>
+          <ion-button
+            *ngIf="!isParticipant(userInfo.id, activity.participantDTOs)"
+            fill="solid"
+            (click)="joinAlert(userInfo.id, activity.id)"
+          >
+            Join Activity
+          </ion-button>
+          <ion-button
+            *ngIf="isParticipant(userInfo.id, activity.participantDTOs) && userInfo.id != activity.ownerDTO.id"
+            class="red-button"
+            fill="solid"
+            (click)="leaveAlert(userInfo.id, activity.id)"
+          >
+            Leave Activity
+          </ion-button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <h2 class="bottom1px">Activity Details</h2>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="activityInfo$ | async as activity; else loadingIndicator">
+    <ng-container *ngIf="activity; else noContent">
+      <p><b>Name: </b>{{ activity.name }}</p>
+      <p><b>Category: </b> {{ activity.category }}</p>
+      <p>
+        <b>Owner: </b>{{ activity.ownerDTO.firstName }} {{
+        activity.ownerDTO.lastName }}
+      </p>
+      <p><b>Description: </b> {{ activity.description }}</p>
+      <hr />
+      <p><b>Date: </b> {{ activity.activityDate | date: 'dd-MM-yyyy' }}</p>
+      <p><b>Start Time: </b>{{ activity.startTime | slice:0:5 }}</p>
+      <p><b>End Time: </b>{{ activity.endTime | slice:0:5 }}</p>
+      <p>
+        <b>Register Deadline: </b>{{ activity.deadlineDate | date: 'dd-MM-yyyy'
+        }}
+      </p>
+      <hr />
+      <p>
+        <b>Min. Participants: </b>{{ activity.activityTypeDTO.minParticipants }}
+      </p>
+      <p>
+        <b>Max. Participants: </b>{{ activity.activityTypeDTO.maxParticipants }}
+      </p>
+      <p *ngIf="!activity.activityTypeDTO.hasRanking">
+        <b>Teams: </b>{{ activity.activityTypeDTO.teamsPerActivity }}
+      </p>
+      <p>
+        <b>Status: </b>
+        <span
+          [ngClass]="activity.activityStatus == 'OPEN' ? 'logo-blue' : 'logo-red'"
+        >
+          {{ activity.activityStatus }}
+        </span>
+      </p>
+      <hr />
+      <p style="padding-bottom: 0.3rem">
+        <b *ngIf="activity.activityStatus !== 'CLOSED'"
+          >Current Participants:
+        </b>
+        <b *ngIf="activity.activityStatus === 'CLOSED'">Participants: </b>
+        {{ activity.participantDTOs.length }}
+      </p>
+      <hr style="margin: 0px" />
+
+      <ng-container
+        *ngIf="activity.participantDTOs && activity.participantDTOs.length > 0; else noContent"
+      >
+        <ul class="activities">
+          <li *ngFor="let user of activity.participantDTOs">
+            <div>
+              <span class="field" style="width: 210px">
+                <a href="play/summary/{{ user.id }}">
+                  {{ user.firstName }} {{ user.lastName }}
+                </a>
+              </span>
+              <ng-container *ngIf="userInfo$ | async as userInfo">
+                <span
+                  *ngIf="activity.activityStatus !== 'CLOSED' && (userInfo.id === activity.ownerDTO.id || userInfo.appRole === 'ADMIN' || userInfo.appRole === 'SUPERADMIN')"
+                >
+                  <fa-icon
+                    (click)="kickAlert(user.id, activity.id)"
+                    [ngClass]="user.id !== activity.ownerDTO.id ? 'logo-red' : 'inactive-grey'"
+                    class="p-1, extra-margin"
+                    [icon]="faCancel"
+                    size="1x"
+                  ></fa-icon>
+                </span>
+              </ng-container>
+              <span class="field-width xp-styling" style="width: 130px">
+                <a href="play/summary/{{ user.id }}">
+                  <fa-icon
+                    class="p-1 xp-styling"
+                    [icon]="faStar"
+                    size="1x"
+                  ></fa-icon>
+                  XP: {{ user.experiencePoints }}
+                </a>
+              </span>
+              <span class="field-width">
+                <a href="play/summary/{{ user.id }}">
+                  <fa-icon
+                    class="p-1 infocircle"
+                    [icon]="faInfoCircle"
+                    size="1x"
+                  ></fa-icon>
+                </a>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+    </ng-container>
+  </div>
+</ion-content>
+<ng-template #loadingIndicator>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<ng-template #noContent>
+  <h2 class="nocontent">(No content)</h2>
+</ng-template>

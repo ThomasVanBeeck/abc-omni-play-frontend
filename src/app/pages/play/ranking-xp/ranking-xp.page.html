@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <h2 class="bottom1px">Ranked by XP</h2>
+</ion-header>
+
+<ion-content [scrollEvents]="true">
+  <div *ngIf="usersInfo$ | async as users; else loadingIndicator">
+    <ng-container *ngIf="users && users.length > 0; else noContent">
+      <ul class="activities">
+        <li *ngFor="let user of users">
+          <a href="play/summary/{{ user.id }}">
+            <span class="field" style="width: 230px"
+              >{{ user.firstName }} {{ user.lastName }}</span
+            >
+            <span class="field xp-styling" style="width: 130px">
+              <fa-icon
+                class="p-1 xp-styling"
+                [icon]="faStar"
+                size="1x"
+              ></fa-icon>
+              XP: {{ user.experiencePoints }}
+            </span>
+
+            <span class="field">
+              <fa-icon
+                class="p-1 infocircle"
+                [icon]="faInfoCircle"
+                size="1x"
+              ></fa-icon>
+            </span>
+          </a>
+        </li>
+      </ul>
+      <ion-infinite-scroll threshold="20px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingText="Please wait..."
+          loadingSpinner="bubbles"
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ng-container>
+  </div>
+</ion-content>
+<ng-template #loadingIndicator>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<ng-template #noContent>
+  <h2 class="nocontent">(No content)</h2>
+</ng-template>

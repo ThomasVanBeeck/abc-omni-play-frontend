@@ -1,0 +1,26 @@
+<ion-card (click)="navigateToProfile()" *transloco="let t">
+  <ion-card-header>
+    <ion-card-subtitle *ngIf="manager">{{ t("manager") }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <div class="flex flex-row align-middle pb-4 pl-4 pr-4 gap-4">
+    <div class="w-1/3" *ngIf="showImage">
+      <div *ngIf="imageLoading">
+        <app-loading-indicator/>
+      </div>
+      <div *ngIf="!imageLoading" class="abc-border-image">
+        <img
+          class="abc-profile-image round p-3 md:w-1/3"
+          src="{{image}}"
+          alt="profile picture"/>
+      </div>
+    </div>
+    <div class="flex flex-row align-middle my-auto justify-between" style="width: 100% !important;">
+      <div class="flex flex-col justify-center">
+        <ion-text class=" text-2xl"> {{ user.displayName }}</ion-text>
+        <ion-text class=" text-lg"> {{ user.jobTitle }}</ion-text>
+      </div>
+      <fa-icon [icon]="faUpRightFromSquare" class="text-xl my-auto" *ngIf="manager"/>
+    </div>
+  </div>
+</ion-card>

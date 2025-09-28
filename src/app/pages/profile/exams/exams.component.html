@@ -1,0 +1,6 @@
+<ion-list class="bg-transparent" lines="none">
+  <div *ngFor="let ex of exams" class="py-2 px-2 bg-transparent ">
+    <h2>{{ ex.exam.name }}</h2>
+    <p class="dark:text-gray-400 text-gray-600">{{ ex.datePassed }}</p>
+  </div>
+</ion-list>

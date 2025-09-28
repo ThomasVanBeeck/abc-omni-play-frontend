@@ -1,0 +1,274 @@
+<ion-header *transloco="let t">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="isPlatform('ios') ? t('back'): undefined"/>
+    </ion-buttons>
+    <ion-title>{{ t('fleet.header.title') }}</ion-title>
+  </ion-toolbar>
+  <app-connectivity-error />
+  <ion-progress-bar *ngIf="progress" class="z-10" type="indeterminate"></ion-progress-bar>
+</ion-header>
+
+<ion-content *transloco="let t">
+  <ion-refresher
+    (ionRefresh)="forceRefreshCarData($any($event))"
+    *ngIf="!!fleetDriver"
+    [pullFactor]="0.5"
+    [pullMax]="200"
+    [pullMin]="100"
+    slot="fixed"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <app-loading-indicator *ngIf="!fleetCar" class="z-10 inset-center"/>
+    <div
+      *ngIf="(fleetCar && !fleetCar.active) || (fleetDriver && !fleetDriver.active)"
+      class="absolute z-10 top-0 left-0 min-w-full"
+    >
+      <div>
+        <div
+          class="uppercase bg-red-600 text-center text-white font-semibold py-1 min-w-24"
+        >
+          {{ t('fleet.content.inactive') }}
+        </div>
+        <div
+          class="uppercase bg-gray-600 text-center text-white font-semibold py-1 min-w-24"
+        >
+          {{t('fleet.content.error.contactHR')}} {{
+            fleetCar && fleetCar.active ? ''
+              : t('fleet.content.car.car')
+          }} {{ fleetDriver && fleetDriver.active ? '' : t('fleet.content.driver.title') }}
+        </div>
+      </div>
+    </div>
+    <app-loading-indicator
+      *ngIf="progress || imageLoading"
+    />
+    <ion-row class="{{progress || imageLoading ? 'blur-sm': ''}}">
+      <ion-col size="12">
+        <div class="relative overflow-hidden">
+          <div *ngIf="fleetCar && !imageLoading" class="absolute right-0 top-0 h-16 w-16 z-10">
+            <div
+              class="absolute uppercase transform rotate-45 bg-green-600 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]"
+            >
+              {{
+                t('fleet.content.car.carType.' + fleetCar.carType)
+              }}
+            </div>
+          </div>
+          <ion-card *ngIf="fleetCar && !imageLoading" [class]="fleetCar.active ? '' : 'blur-sm'">
+            <ion-card-header>
+              <ion-card-title>
+                <div class="text-6xl font-bold mr-2 z-10">{{t('fleet.content.car.allSet')}}</div>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content
+              class="min-w-full z-10 min-h-32 px-2 pr-16 flex justify-center mb-2"
+            >
+              <div class="relative">
+                <img
+                  [src]="carImage"
+                  class="relative ml-8 -bottom-5 max-w-full transform scale-[2.2]"
+                  priority
+                />
+              </div>
+            </ion-card-content>
+            <div class="grid place-items-center">
+              <div class="rounded-lg bg-white shadow-lg">
+                <div
+                  class="flex w-full rounded-lg border-4 bg-white shadow border-red-700"
+                >
+                  <ion-label
+                    class="flex flex-col justify-between bg-blue-700 rounded-l p-1 text-2xl font-bold text-white"
+                  ><img
+                    class="h-8"
+                    src="https://cdn.cdnlogo.com/logos/e/51/eu.svg"
+                  />BE
+                  </ion-label
+                  >
+                  <ion-label
+                    class="font-mono text-[3.50rem] font-medium text-red-600 text-nowrap ion-text-nowrap"
+                  >{{ fleetCar.registrationPlate }}
+                  </ion-label
+                  >
+                </div>
+              </div>
+              <ion-label
+                class="flex flex-col justify-between rounded-l p-1 text-2xl font-bold text-center"
+              >{{ fleetCar.brand.name }} {{ fleetCar.model }}
+                {{ fleetCar.type }}
+              </ion-label
+              >
+              <ion-card-content>
+                <div class="text-center">
+                  <ion-label
+                    class="flex flex-row justify-between rounded-l p-1 text-2xl font-bold text-gray-400 text-center"
+                  >
+                    <fa-icon
+                      [icon]="carMileage"
+                      class="text-gray-400 dark:text-white mr-2"
+                      slot="start"
+                    ></fa-icon
+                    >
+                    {{ fleetCar.mileage }} km
+                  </ion-label
+                  >
+                  <ion-note
+                  >{{t('fleet.content.car.lastUpdate', {
+                    lastMileageUpdatedAt: fleetCar.lastMileageUpdatedAt
+                  })}}
+                  </ion-note
+                  >
+                </div>
+              </ion-card-content>
+            </div>
+            <ion-card-content class="mg-4">
+              <div class="grid grid-cols-1 gap-4">
+                <div class="rounded-md bg-white shadow-md p-4 flex items-center justify-between">
+                  <h2 class="text-lg font-semibold">{{t('fleet.content.car.nextInspection')}}</h2>
+                  <span class="text-gray-600 text-xl font-bold text-nowrap">
+                    {{ fleetCar.inspectionEndDate ? remainingDays(fleetCar.inspectionEndDate) : t('noData') }}
+                  </span>
+                </div>
+
+                <div *ngIf="fleetCar.nextCarServiceDate"
+                     class="rounded-md bg-white shadow-md p-4 flex items-center justify-between">
+                  <h2 class="text-lg font-semibold">{{t('fleet.content.car.nextService')}}</h2>
+                  <span class="text-gray-600 text-xl font-bold">
+                    {{ remainingDays(fleetCar.nextCarServiceDate) }}
+                  </span>
+                </div>
+
+                <div *ngIf="fleetCar.nextCarServiceMileage"
+                     class="rounded-md bg-white shadow-md p-4 flex items-center justify-between">
+                  <h2 class="text-lg font-semibold">{{t('fleet.content.car.nextServiceInKm')}}</h2>
+                  <span class="text-gray-600 text-xl font-bold">
+                    {{ remainingMileage(fleetCar.nextCarServiceMileage) }}
+                  </span>
+                </div>
+              </div>
+            </ion-card-content>
+
+
+          </ion-card>
+          <app-notification
+            *ngIf="fleetCar && isInspectionLate(fleetCar)"
+            [faIcon]="inspectionIcon"
+            [description]="t('fleet.content.car.notifications.inspection.lateInspectionDescription')"
+            [title]="t('fleet.content.car.notifications.inspection.lateInspectionTitle')"
+            typeNotification="error"
+          />
+          <app-notification
+            *ngIf="fleetCar && isInspectionDue(fleetCar) && !isInspectionLate(fleetCar)"
+            [faIcon]="inspectionIcon"
+            [description]="t('fleet.content.car.notifications.inspection.dueInspectionDescription')"
+            [title]="t('fleet.content.car.notifications.inspection.dueInspectionTitle')"
+            typeNotification="warning"
+          />
+          <app-notification
+            *ngIf="fleetCar && isMaintenanceLate(fleetCar)"
+            [faIcon]="repairIcon"
+            [description]="t('fleet.content.car.notifications.maintenance.lateMaintenanceDescription')"
+            [title]="t('fleet.content.car.notifications.maintenance.lateMaintenanceTitle')"
+            typeNotification="error"
+          />
+          <app-notification
+            *ngIf="fleetCar && isMaintenanceDue(fleetCar) && !isMaintenanceLate(fleetCar)"
+            [faIcon]="repairIcon"
+            [description]="t('fleet.content.car.notifications.maintenance.dueMaintenanceDescription')"
+            [title]="t('fleet.content.car.notifications.maintenance.dueMaintenanceTitle')"
+            typeNotification="warning"
+          />
+          <app-notification
+            *ngIf="fleetCar && (fleetCar | isLeasingCar) && isLeasingContractDue(fleetCar) && !isLeasingContractLate(fleetCar)"
+            [faIcon]="leasContract"
+            [description]="t('fleet.content.car.notifications.leasingContract.dueLeasingContractDescription')"
+            [title]="t('fleet.content.car.notifications.leasingContract.dueLeasingContractTitle')"
+            typeNotification="warning"
+          />
+          <app-notification
+            *ngIf="fleetCar && (fleetCar | isLeasingCar) && isLeasingContractLate(fleetCar)"
+            [faIcon]="leasContract"
+            [description]="t('fleet.content.car.notifications.leasingContract.lateLeasingContractDescription')"
+            [title]="t('fleet.content.car.notifications.leasingContract.lateLeasingContractTitle')"
+            typeNotification="error"
+          />
+          <ion-card *ngIf="!fleetCar && !imageLoading" class="blur-sm">
+            <ion-card-header>
+              <ion-card-title>
+                <div class="text-6xl font-bold mr-2 z-10">{{t('fleet.content.car.noCar')}}</div>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content
+              class="min-w-full min-h-20 p-10 flex justify-center mb-2"
+            >
+              <div class="relative">
+                <img
+                  [src]="carImage"
+                  class="relative ml-8 -bottom-5 max-w-full transform scale-[2.2]"
+                  priority
+                />
+              </div>
+            </ion-card-content>
+            <div class="grid place-items-center mb-8">
+              <div class="rounded-lg bg-white shadow-lg">
+                <div
+                  class="flex w-full rounded-lg border-4 bg-white shadow border-red-700"
+                >
+                  <ion-label
+                    class="flex flex-col justify-between bg-blue-700 rounded-l p-1 text-2xl font-bold text-white"
+                  ><img
+                    class="h-8"
+                    src="https://cdn.cdnlogo.com/logos/e/51/eu.svg"
+                  />BE
+                  </ion-label
+                  >
+                  <ion-label
+                    class="p-1 font-mono text-6xl font-medium text-red-600"
+                  >2-XXX-XXX
+                  </ion-label
+                  >
+                </div>
+              </div>
+              <ion-label
+                class="flex flex-col justify-between rounded-l p-1 text-2xl font-bold text-white text-center"
+              >XXX XXXX
+              </ion-label
+              >
+            </div>
+          </ion-card>
+          <app-notification
+            *ngIf="!fleetCar"
+            [faIcon]="carIcon"
+            [description]="t('fleet.content.car.notifications.noCar.noCarDescription')"
+            [title]="t('fleet.content.car.notifications.noCar.noCarTitle')"
+            typeNotification="error"
+          />
+        </div>
+
+        <!-- Car Attachments -->
+        <app-car-attachments (dropdownClicked)="onClickDropDownCard($event)"
+                             (openAttachmentClicked)="openAttachment($event)"
+                             *ngIf="fleetCarAttachments"
+                             [dropDownCards]="dropDownCards()"
+                             [fleetCarAttachments]="fleetCarAttachments"/>
+
+        <!-- Driver Details -->
+        <app-car-driver (clipBoardClicked)="writeToClipboard($event)"
+                        (dropdownClicked)="onClickDropDownCard($event)"
+                        *ngIf="fleetDriver"
+                        [dropDownCards]="dropDownCards()"
+                        [fleetDriver]="fleetDriver"/>
+
+        <!-- Car Details -->
+        <app-car-info (clipBoardClicked)="writeToClipboard($event)"
+                      (dropdownClicked)="onClickDropDownCard($event)"
+                      *ngIf="fleetCar"
+                      [dropDownCards]="dropDownCards()"
+                      [fleetCar]="fleetCar"/>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-app>
+
+  <ion-router-outlet></ion-router-outlet> 
+  <!-- Only show header/footer when not on the 'play' route -->
+  <ng-container *ngIf="!hideHeaderFooter">
+    <ion-header>
+      <!-- Your header content here -->
+
+
+
+    </ion-header>
+    <ion-footer>
+      <!-- Your footer content here -->
+    </ion-footer>
+
+    <app-tabs *ngIf="authService.getLoggedInUser()"></app-tabs>
+  </ng-container>
+</ion-app>

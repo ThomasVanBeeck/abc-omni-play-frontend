@@ -1,0 +1,187 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <div class="flexbuttons">
+    <ion-button
+      *ngIf="!isNew"
+      class="green-button"
+      fill="solid"
+      (click)="saveAlert()"
+    >
+      Save Changes
+    </ion-button>
+    <ion-button
+      *ngIf="isNew"
+      class="green-button"
+      fill="solid"
+      (click)="saveAlert()"
+    >
+      Publish Activity
+    </ion-button>
+    <ion-button
+      *ngIf="!isNew"
+      class="red-button"
+      fill="solid"
+      (click)="cancelAlert()"
+    >
+      Cancel Activity
+    </ion-button>
+    <ion-button
+      *ngIf="isNew"
+      class="red-button"
+      fill="solid"
+      [routerLink]="'/play/activities'"
+    >
+      Cancel
+    </ion-button>
+  </div>
+  <h2 *ngIf="isNew" class="bottom1px">Create Activity</h2>
+  <h2 *ngIf="!isNew" class="bottom1px">Edit Activity</h2>
+</ion-header>
+<ion-content>
+  <div *ngIf="localActivity; else loadingIndicator">
+    <ion-label position="inline">Name:</ion-label>
+    <ion-input
+      [(ngModel)]="localActivity.name"
+      maxlength="40"
+      placeholder="Insert activity name"
+    ></ion-input>
+    <ion-label position="inline">Category:</ion-label>
+    <ion-input
+      [(ngModel)]="localActivity.category"
+      maxlength="40"
+      placeholder="Insert category"
+    ></ion-input>
+    <ion-label position="inline">Description:</ion-label>
+    <ion-textarea
+      [(ngModel)]="localActivity.description"
+      [counter]="true"
+      maxlength="200"
+      [autoGrow]="true"
+      placeholder="Describe activity"
+    ></ion-textarea>
+    <ng-container
+      *ngIf="typesInfo$ | async as activityTypes; else loadingIndicator"
+    >
+      <ion-list>
+        <ion-label position="inline"> Type: </ion-label>
+        <ion-select
+          *ngIf="isNew"
+          [compareWith]="compareWith"
+          [(ngModel)]="localActivity.activityTypeDTO"
+          interface="popover"
+          placeholder="Select Activity Type"
+        >
+          <ion-select-option
+            *ngFor="let activityType of activityTypes"
+            [value]="activityType"
+          >
+            {{ activityType.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-list>
+      <p *ngIf="!isNew" class="like-ion-input">
+        {{ localActivity.activityTypeDTO.name }}
+      </p>
+    </ng-container>
+    <ion-label>Min. Participants:</ion-label>
+    <p class="like-ion-input">
+      {{ localActivity.activityTypeDTO.minParticipants }}
+    </p>
+    <ion-label>Max. Participants:</ion-label>
+    <p class="like-ion-input">
+      {{ localActivity.activityTypeDTO.maxParticipants }}
+    </p>
+    <ion-label *ngIf="!localActivity.activityTypeDTO.hasRanking"
+      >Teams:</ion-label
+    >
+    <p class="like-ion-input" *ngIf="!localActivity.activityTypeDTO.hasRanking">
+      {{ localActivity.activityTypeDTO.teamsPerActivity }}
+    </p>
+    <ion-label>Duration:</ion-label>
+    <p class="like-ion-input">
+      +/- {{ localActivity.activityTypeDTO.duration }} minutes
+    </p>
+    <ion-label>Result Structure:</ion-label>
+    <p class="like-ion-input" *ngIf="localActivity.activityTypeDTO.hasRanking">
+      Ranking (1st, 2nd, 3th, ...)
+    </p>
+    <p class="like-ion-input" *ngIf="!localActivity.activityTypeDTO.hasRanking">
+      Outcome (win, loss, draw)
+    </p>
+    <ion-label>Date:</ion-label>
+    <ion-input
+      type="date"
+      [min]="today"
+      [(ngModel)]="localActivity.activityDate"
+    ></ion-input>
+    <ion-label>Start Time:</ion-label>
+    <ion-input type="time" [(ngModel)]="localActivity.startTime"></ion-input>
+    <ion-label>End Time:</ion-label>
+    <ion-input type="time" [(ngModel)]="localActivity.endTime"></ion-input>
+    <ion-label>Register Deadline:</ion-label>
+    <ion-input
+      type="date"
+      [min]="today"
+      [(ngModel)]="localActivity.deadlineDate"
+    ></ion-input>
+    <ion-label>Current Participants:</ion-label>
+    <p style="padding-bottom: 0.3rem">
+      {{ localActivity.participantDTOs.length }}
+    </p>
+    <hr style="margin: 0px" />
+    <ng-container
+      *ngIf="localActivity.participantDTOs && localActivity.participantDTOs.length > 0; else noContent"
+    >
+      <ul class="activities">
+        <li *ngFor="let user of localActivity.participantDTOs">
+          <a href="play/summary/{{ user.id }}">
+            <span class="field" style="width: 230px"
+              >{{ user.firstName }} {{ user.lastName }}</span
+            >
+            <span class="field xp-styling" style="width: 130px">
+              <fa-icon
+                class="p-1 xp-styling"
+                [icon]="faStar"
+                size="1x"
+              ></fa-icon>
+              XP: {{ user.experiencePoints }}
+            </span>
+            <span class="field">
+              <fa-icon
+                class="p-1 infocircle"
+                [icon]="faInfoCircle"
+                size="1x"
+              ></fa-icon>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</ion-content>
+<ng-template #loadingIndicator>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<ng-template #noContent>
+  <h2 class="nocontent">(No content)</h2>
+</ng-template>

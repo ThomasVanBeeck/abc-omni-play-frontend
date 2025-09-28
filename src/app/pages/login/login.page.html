@@ -1,0 +1,20 @@
+<ion-content *transloco="let t">
+  <router-outlet *ngIf="!isIframe"></router-outlet>
+  <div style="height: 100%" class="flex flex-row justify-center align-middle">
+    <div class="text-center flex flex-row justify-center align-middle my-auto p-16">
+      <div class="flex flex-col">
+
+        <div class="flex flex-row justify-center">
+          <img *ngIf="!prefersDark" ngSrc="assets/images/abc_logo.png" alt="logo" height="367" width="842" priority>
+          <img *ngIf="prefersDark" ngSrc="assets/images/abc_logo_white.png" alt="logo" height="171" width="440" priority>
+        </div>
+        <span class="mt-5 text-xl">{{t("welcome_message")}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-5 right-0 left-0 flex flex-row justify-center">
+    <button class="px-16 py-3 rounded-xl gradient-bg button button-native font-bold" (click)="login()">
+      <ion-text class="text-gray-200 text-2xl">{{t("get_started")}}</ion-text>
+    </button>
+  </div>
+</ion-content>

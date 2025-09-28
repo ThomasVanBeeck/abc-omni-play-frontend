@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/play/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-tab-button
+      [routerLink]="['/play/superadmin-admins']"
+      slot="end"
+      *ngIf="(userInfo$ | async)?.appRole === 'SUPERADMIN'"
+    >
+      <fa-icon class="p-1 logo-yellow" [icon]="faComputer" size="2x"></fa-icon>
+      <ion-label>admin</ion-label>
+    </ion-tab-button>
+    <ion-tab-button slot="end" [routerLink]="['/play/help']">
+      <fa-icon
+        class="p-1 logo-blue"
+        [icon]="faQuestionCircle"
+        size="2x"
+      ></fa-icon>
+      <ion-label>Help</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+  <app-tabs-superadmin></app-tabs-superadmin>
+  <div class="flexbuttons">
+    <ion-button class="green-button" fill="solid" (click)="saveAlert()">
+      Save Changes
+    </ion-button>
+    <ion-button class="yellow-button" fill="solid" (click)="resetXpMappings()">
+      Reset Values
+    </ion-button>
+  </div>
+  <h2 class="bottom1px">XP Configuration</h2>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="xpMappingsInfo$ | async as xpMappings; else loadingIndicator">
+    <ng-container *ngIf="xpMappings && xpMappings.length > 0; else noContent">
+      <div *ngFor="let xp of localXpMappings">
+        <ion-label position="floating">{{ xp.resultName }} XP value:</ion-label>
+        <ion-input
+          type="number"
+          [(ngModel)]="xp.xpToEarn"
+          inputmode="numeric"
+          maxlength="4"
+          placeholder="Enter XP value"
+        ></ion-input>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>
+<ng-template #loadingIndicator>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<ng-template #noContent>
+  <h2 class="nocontent">(No content)</h2>
+</ng-template>

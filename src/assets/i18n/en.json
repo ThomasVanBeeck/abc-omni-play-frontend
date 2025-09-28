@@ -1,0 +1,228 @@
+{
+  "play_home": "Home",
+  "play_activities": "Activities",
+  "play_rankings": "Rankings",
+  "play_users": "Users",
+  "play_help": "Help",
+  "welcome": "Welcome {{name}}!",
+  "my_car": "My car",
+  "everything_about_my_car": "Everything about my car",
+  "my_colleagues": "My colleagues",
+  "my_activities": "Join in!",
+  "competitive_activities": "Activities",
+  "who_is_who": "Who is who",
+  "vcard": "V-card",
+  "settings": "Settings",
+  "manager": "Manager",
+  "back": "Back",
+  "colleagues": "Colleagues",
+  "search": "Search",
+  "logout": "Logout",
+  "welcome_message": "Welcome to ABC-Omni, bringing ABC-Groep to your fingertips.",
+  "get_started": "Get started",
+  "birthdays": "Birthdays",
+  "offline_message": "You are offline. Please check your internet connection.",
+  "sorting": "Sorting",
+  "intranet": {
+    "news": {
+      "recentNews": "Most recent",
+      "otherNews": "Other news",
+      "detailsTitle": "News Details",
+      "author": "Author",
+      "views": "Views",
+      "commentCount": "Comment Count",
+      "photoCommentCount": "Photo Comment Count",
+      "content": {
+        "noNews": "No news available",
+        "readMore": "Read more"
+      }
+    }
+  },
+  "profile": {
+    "header": {
+      "title": "My profile",
+      "subtitle": "Me and my career"
+    },
+    "title": "Profile",
+    "content": {
+      "name": "Name",
+      "email": "Email",
+      "mobile": "Mobile",
+      "phone": "Phone",
+      "address": "Address",
+      "languages": "Languages",
+      "speaking": "Speaking",
+      "reading": "Reading",
+      "writing": "Writing"
+    }
+  },
+  "fleet": {
+    "header": {
+      "title": "My car"
+    },
+    "content": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "fuelCard": "Fuel card",
+      "inactive": "Inactive",
+      "error": {
+        "contactHR": "Please contact HR to activate your"
+      },
+      "car": {
+        "notifications": {
+          "inspection": {
+            "lateInspectionDescription": "You are late for your car inspection! Contact HR!",
+            "lateInspectionTitle": "Inspection overdue",
+            "dueInspectionDescription": "There is less than 5 months left for your car inspection! Make an appointment!",
+            "dueInspectionTitle": "Inspection due"
+          },
+          "maintenance": {
+            "lateMaintenanceDescription": "You are late for your car maintenance! Contact HR!",
+            "lateMaintenanceTitle": "Maintenance overdue",
+            "dueMaintenanceDescription": "There is less than 5 months or 1000 km left for your car maintenance! Make an appointment!",
+            "dueMaintenanceTitle": "Maintenance due"
+          },
+          "leasingContract": {
+            "dueLeasingContractDescription": "Your leasing contract is due soon! Contact HR!",
+            "dueLeasingContractTitle": "Leasing contract due",
+            "lateLeasingContractDescription": "Your leasing contract has expired! Contact HR!",
+            "lateLeasingContractTitle": "Leasing contract expired"
+          },
+          "noCar": {
+            "noCarDescription": "If you should have an vehicle please contact HR!",
+            "noCarTitle": "No vehicle"
+          }
+        },
+        "car": "car",
+        "noCar": "No car",
+        "carType": {
+          "company": "Company car",
+          "leasing": "Leasing car",
+          "unknown": "Unknown"
+        },
+        "allSet": "All set",
+        "lastUpdate": "Last update: {{lastMileageUpdatedAt}}",
+        "nextInspection": "Next inspection",
+        "nextService": "Next service",
+        "nextServiceInKm": "Next service in km"
+      },
+      "attachment": {
+        "title": "Attachments"
+      },
+      "driver": {
+        "title": "Driver",
+        "fuelCardId": "Fuel card ID",
+        "fuelCardActiviationDate": "Fuel card activation date",
+        "fuelCardExpirationDate": "Fuel card expiration date"
+      },
+      "carInfo": {
+        "registrationPlate": "Registration plate",
+        "brandAndModel": "Brand and model",
+        "chassisNumber": "Chassis number",
+        "firstRegistrationDate": "First registration date",
+        "engineType": "Engine type",
+        "enginePower": "Engine power",
+        "tireLocation": "Tire location",
+        "tireInformation": "Tire information",
+        "tireType": "Tire type",
+        "spireKeyLocation": "Spare key location",
+        "purchaseDate": "Purchase date",
+        "catalogValue": "Catalog value",
+        "purchaseCost": "Purchase cost",
+        "insuranceCompany": "Insurance company",
+        "insuranceContractNumber": "Insurance contract number",
+        "insuranceContractEndDate": "Insurance contract end date",
+        "extraInfo": "Extra info",
+        "inspectionEndDate": "Inspection end date",
+        "itemGroups": {
+          "carDetails": "Car details",
+          "tires": "Tires",
+          "keys": "Keys",
+          "extraInformation": "Extra information",
+          "insurance": "Insurance",
+          "owner": "Owner",
+          "garage": "Garage",
+          "leasingCompany": "Leasing company"
+        }
+      }
+    }
+  },
+  "noData": "No data",
+  "language": "Language",
+  "languageDescription": "You can change the language of the app here.",
+  "mute": "Mute notifications",
+  "muteDescription": "You can enable or disable notifications for this app.",
+  "years": "years",
+  "year": "year",
+  "month": "month",
+  "and": "and",
+  "yes": "Yes",
+  "no": "No",
+  "charging": "Book charging point",
+  "timesheet": "Timesheet",
+  "doctor": "Upload doctor's note",
+  "insurance": "Insurance number",
+  "is_not_available": "is not available",
+  "languageKeys": {
+    "nl": "Nederlands",
+    "en": "English",
+    "fr": "Français"
+  },
+  "days": {
+    "short": {
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat"
+    },
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
+  },
+  "tomorrow": "Tomorrow",
+  "no_events_tomorrow": "No events tomorrow",
+  "no_events_soon": "No events soon",
+  "months": {
+    "value": "months",
+    "short": {
+      "january": "Jan",
+      "february": "Feb",
+      "march": "Mar",
+      "april": "Apr",
+      "may": "May",
+      "june": "Jun",
+      "july": "Jul",
+      "august": "Aug",
+      "september": "Sep",
+      "october": "Oct",
+      "november": "Nov",
+      "december": "Dec"
+    },
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "respond_not_going": "I will not attend",
+  "respond_going": "I will attend",
+  "event": "Event",
+  "not_going_response": "Response: I will not attend was sent",
+  "going_response": "Response: I will attend was sent"
+}

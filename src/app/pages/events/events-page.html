@@ -1,0 +1,50 @@
+<ion-header *transloco="let t">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button />
+    </ion-buttons>
+    <ion-title>{{ t("event") }}</ion-title>
+  </ion-toolbar>
+  <app-connectivity-error />
+</ion-header>
+
+<ion-content *transloco="let t">
+  <div class="h-full pb-40">
+    <div class="flex flex-col p-4">
+      <ion-text class="text-3xl">{{ event?.title }}</ion-text>
+      <div class="flex flex-row gap-2 text-gray-400 text-xl">
+        <fa-icon [icon]="faCalendarAlt" />
+        <ion-text> {{ t(eventDay!) }} {{ eventDate }} {{ t(eventMonth!) }} {{ eventYear }}</ion-text>
+        <ion-text>{{ eventTimes.join(" - ") }}</ion-text>
+      </div>
+      <div class="flex flex-row gap-2">
+        <fa-icon [icon]="faLocationDot" class="text-lg" />
+        <ion-text class="text-lg">{{ event?.location }}</ion-text>
+      </div>
+
+      <img alt="event image" class="py-2|" src="{{event?.imageUrl}}" width="100%">
+      <ion-text class="text-lg">{{ event?.content }}</ion-text>
+    </div>
+    <div *ngIf="event?.comments!.length > 0" class="flex flex-col gap-3 p-4">
+      <app-comment *ngFor="let comment of event?.comments" [comment]="comment" />
+    </div>
+
+
+  </div>
+
+  <div class="flex flex-row w-full bottom-0 fixed">
+    <button (click)="respondNotGoing()" class="button button-solid bg-red-500 p-3 w-full">{{ t("respond_not_going") }}
+    </button>
+    <button (click)="respondGoing()" class="button button-solid bg-green-500 p-3 w-full">{{ t("respond_going") }}
+    </button>
+    <ion-toast
+      (didDismiss)="setOpen(false)"
+      [duration]="5000"
+      [isOpen]="isToastOpen"
+      color="primary"
+      message="{{t(message)}}"
+      position="bottom"
+    ></ion-toast>
+  </div>
+
+</ion-content>

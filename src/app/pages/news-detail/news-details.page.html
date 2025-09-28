@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar *transloco="let t">
+    <ion-title>{{ t('intranet.news.detailsTitle') }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="isPlatform('ios') ? t('back'): undefined"/>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *transloco="let t" class="ion-padding">
+  <div *ngIf="newsItem">
+    <img [src]="newsItem.imageUrl" alt="news image">
+    <ion-card-header>
+      <ion-card-title>{{ newsItem.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card>
+      <ion-card-content>
+        <ion-text>{{ newsItem.content }}</ion-text>
+        {{newsItem.commentCount}}
+      </ion-card-content>
+      <ion-footer>
+      </ion-footer>
+    </ion-card>
+  </div>
+  <div *ngIf="!newsItem">
+    <ion-text>{{ t('intranet.news.content.noNews') }}</ion-text>
+  </div>
+</ion-content>

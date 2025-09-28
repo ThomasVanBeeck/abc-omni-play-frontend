@@ -1,0 +1,235 @@
+
+@font-face {
+    font-family: 'Lato';
+    src: url('/assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('/assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('/assets/fonts/Lato-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('/assets/fonts/Lato-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+ion-input, ion-textarea {
+    --color: var(--play-ion-input);
+  }
+
+ion-label {
+    font-weight: bold;
+}
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+h1,h3 {
+    font-weight: bold;
+}
+
+h3 {
+    color: var(--play-h1-h2);
+    font-size: 19pt;
+    padding: 0.1rem 0rem;
+    margin-top: 2.4rem;
+}
+
+h1, h2 {
+    color: var(--play-h1-h2);
+    text-align: center;
+    font-size: 17pt;
+    padding: 0.2rem 0rem;
+}
+
+.morepaddingtop {
+    padding-top: 1rem;
+}
+
+p, ion-label,h3, nav {
+    margin-left: 0.9rem;
+    margin-right: 0.9rem;
+}
+
+.like-ion-input {
+    padding-top: 0.63rem;
+    padding-bottom: 0.63rem;
+}
+
+ion-label {
+    color: var(--play-blue);
+}
+
+
+ion-input, ion-textarea {
+--padding-top: 0rem;
+--padding-bottom: 0rem;
+--padding-start: 0.9rem;
+--padding-end: 2rem;
+}
+
+form {
+    margin: 0.9rem;
+}
+
+h2 {
+    margin-top: 0.5rem;
+}
+
+.nocontent {
+    text-decoration: dotted;
+    color: var(--play-no-content);
+    font-style: italic;
+}
+
+.xp-styling {
+    color: #F2AE1D;
+}
+
+.activities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ ul {
+    margin-bottom: 1rem;
+}
+
+.activities li a, .activities li div, ion-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.noflex {
+    display: inline-block;
+
+}
+
+
+.activities li.scores span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.extra-margin {
+    padding: 0.6rem;
+}
+
+.activities li:nth-child(odd) {
+    background-image: linear-gradient( var(--play-odd-1),var(--play-odd-2));
+}
+
+.activities li:nth-child(even) {
+    background-image: linear-gradient( var(--play-even-1),var(--play-even-2));
+}
+.activities li:first-child {
+    border-top: 0px solid var(--play-border-top);
+}
+
+.activities li:last-child {
+    border-bottom: 1px solid var(--play-border-bottom);
+}
+
+.infocircle {
+    //border: 1px solid red;
+    padding-left: 0.3rem;
+}
+
+.field {
+    //border: 1px solid green;
+    padding: 1rem 0.9rem;
+}
+
+.field-width {
+    padding: 0rem 0.9rem;
+}
+
+.bottom1px {
+    border-bottom: 1px solid var(--play-border-bottom);
+}
+
+.paddingtop {
+    padding-top: 4rem;
+}
+
+hr {
+    width: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    border-color: var(--play-border-bottom);
+}
+
+ion-header {
+    box-shadow: none;
+  }
+
+.boxshadow {
+    box-shadow: 0 2px 1px var(--play-box-shadow), 0 -2px 1px var(--play-box-shadow);   
+}
+
+ion-button { 
+     --background: #1D559C;
+    // --background-hover: #9ce0be;
+     --background-activated: #3776c8;
+    // --background-focused: #88f4be;
+  
+    --color: white;
+  
+    --border-radius: 12px;
+    --border-color: #164179;
+    --border-style: solid;
+    --border-width: 2px;
+  
+    --box-shadow: 0px 0px 0px 0px rgba(87, 87, 87, 0.25);
+  
+    --padding-top: 1px;
+    --padding-bottom: 1px;
+  }
+
+  ion-button.yellow-button {
+    --background: #F2AE1D;
+    --background-activated: #edbe5a;
+    --color: black;
+    --border-color: #d79b17eb;
+  }
+  
+  ion-button.red-button {
+    --background: #ED1C24;
+    --background-activated: #f25e63;
+    --color: white;
+    --border-color: #db151c;
+  }
+
+  ion-button.green-button {
+    --background: #10aa27;
+    --background-activated: rgb(50, 194, 59);
+    --color: white;
+    --border-color: #109424;
+  }
+
+  .flexbuttons {
+    display:flex;
+    justify-content: center;
+    margin: auto;
+    padding-top: 0.3rem;
+    align-self: center;
+    gap: 0.3rem;
+  }

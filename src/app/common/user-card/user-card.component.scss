@@ -1,0 +1,14 @@
+.round {
+  border-radius: 100%;
+}
+
+.abc-border-image {
+  background-image: url("../../../assets/images/border.png");
+  background-size: contain;
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+}
+
+.abc-profile-image {
+  object-fit: cover;
+}

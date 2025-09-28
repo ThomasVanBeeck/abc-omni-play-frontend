@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My VCARD</ion-title>
+  </ion-toolbar>
+  <app-connectivity-error/>
+</ion-header>
+
+<ion-content>
+  <div style="height: 100%" *ngIf="vCardLoading" class="flex flex-row justify-center align-middle">
+    <app-loading-indicator class="my-auto"/>
+  </div>
+
+  <div *ngIf="!vCardLoading" style="height: 100%" class="flex flex-col justify-center align-middle gap-4">
+    <ngx-qrcode-styling class="mx-auto" [config]="config!"></ngx-qrcode-styling>
+    <div class="mx-auto flex flex-col justify-center align-middle gap-1" style="width: 300px">
+      <ion-text class="text-center" *ngFor="let value of vCardData">{{ value }}</ion-text>
+    </div>
+  </div>
+</ion-content>

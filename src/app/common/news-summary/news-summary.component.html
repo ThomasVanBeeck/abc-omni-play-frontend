@@ -1,0 +1,29 @@
+<ion-card *transloco="let t" class="rounded-xl">
+  <ion-card-content class="flex flex-row gap-4">
+    <div class="flex flex-col w-1/2 gap-2">
+      <ion-text class="text-2xl text-gray-700">{{ t('intranet.news.recentNews') }}</ion-text>
+      <div class="flex flex-col gap-2" *ngIf="recentNews" (click)="viewSpecificNews(recentNews.item.newsItemId.toString())">
+        <img [src]="recentNews.imageUrl" class="rounded-lg object-cover h-40 w-full" alt="news image" />
+        <div class="flex flex-col border-s-2 border-amber-500 pl-2">
+          <ion-text class="text-sm font-medium">{{ recentNews.title }}</ion-text>
+          <ion-text class="text-sm text-gray-500">{{ recentNews.item.releaseOn | date: 'dd/MM/yyyy' }}</ion-text>
+        </div>
+      </div>
+      <div *ngIf="!recentNews">
+        <ion-text class="text-lg">{{ t('intranet.news.content.noNews') }}</ion-text>
+      </div>
+    </div>
+    <div class="flex flex-col w-1/2 gap-2">
+      <ion-text class="text-2xl text-gray-700">{{ t('intranet.news.otherNews') }}</ion-text>
+      <div *ngFor="let newsItem of news" class="flex flex-col gap-2">
+        <div class="flex flex-col justify-between border-s-2 border-amber-500 pl-2" (click)="viewSpecificNews(newsItem.item.newsItemId.toString())">
+          <ion-text class="ion-text-sm-capitalize truncate">{{ newsItem.title }}</ion-text>
+          <ion-text class="text-sm text-gray-500">{{ newsItem.item.releaseOn | date: 'dd/MM/yyyy' }}</ion-text>
+        </div>
+      </div>
+      <ion-button size="small" class="self-center mt-5" (click)="viewAllNews()">
+        {{ t('intranet.news.content.readMore') }}
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>

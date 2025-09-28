@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar *transloco="let t">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="isPlatform('ios') ? t('back'): undefined" />
+    </ion-buttons>
+    <ion-title>{{ t("colleagues") }}</ion-title>
+  </ion-toolbar>
+  <app-connectivity-error />
+</ion-header>
+
+<ion-content *transloco="let t">
+  <ion-refresher
+    (ionRefresh)="refreshColleagues($any($event))"
+    *ngIf="!colleaguesLoading"
+    [pullFactor]="0.5"
+    [pullMax]="200"
+    [pullMin]="100"
+    slot="fixed">
+    <ion-refresher-content />
+  </ion-refresher>
+  <div *ngIf="colleaguesLoading" class="flex flex-row justify-center align-middle" style="height: 100%">
+    <app-loading-indicator class="my-auto" />
+  </div>
+  <app-birthday-list />
+  <div *ngIf="!colleaguesLoading">
+    <div class="flex flex-row justify-between px-4 pt-2 text-2xl text-gray-500">
+      <ion-text>{{ t("sorting") }}</ion-text>
+      <div (click)=updateSortAlphabetically()>
+        <fa-icon *ngIf="sortAlphabetically" [icon]="faArrowDownAZ"></fa-icon>
+        <fa-icon *ngIf="!sortAlphabetically" [icon]="faArrowUpAZ"></fa-icon>
+      </div>
+    </div>
+    <div class="p-4">
+      <ion-input #ionInputEl (ionInput)="onInput($event)"
+                 [value]="searchFilter"
+                 class="border border-gray-600 rounded !p-2" clearInput="true"
+                 placeholder="{{t('search')}}" type="text" />
+    </div>
+    <div *ngFor="let user of colleagues">
+      <app-user-card
+        [hidden]="!user.displayName.toLowerCase().includes(searchFilter.toLowerCase()) && !user.jobTitle.toLowerCase().includes(searchFilter.toLowerCase())"
+        [showImage]="true"
+        [user]="user" />
+    </div>
+  </div>
+</ion-content>

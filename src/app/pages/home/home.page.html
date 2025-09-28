@@ -1,0 +1,54 @@
+<ion-header *transloco="let t" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ t("welcome", { name: user?.name }) }}</ion-title>
+  </ion-toolbar>
+  <app-connectivity-error />
+</ion-header>
+
+<ion-content *transloco="let t" [fullscreen]="true">
+  <!--  The bellow fast action button should only be visible when there is a user  logged in, otherwise we will not redirect to the login page-->
+  <app-fast-action-button *ngIf="isLoggedIn()" />
+  <div class="flex flex-col gap-3">
+    <app-event-summary *ngIf="isLoggedIn()" class="text-white height-100" />
+    <app-news-summary *ngIf="isLoggedIn()" class="text-white height-100" />
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2">
+      <!-- TODO  fleet service-->
+      <app-module-card
+        [healthService]="fleetHeathService"
+        [description]="t('everything_about_my_car')"
+        [image]="'assets/images/car.jpg'"
+        [link]="'fleet'"
+        [name]="'FLEET'"
+        [title]="t('my_car')"
+        class=""
+      />
+      <app-module-card
+        [description]="t('profile.header.subtitle')"
+        [healthService]="peopleService"
+        [image]="'assets/images/career.jpg'"
+        [link]="'profile/'+user?.username"
+        [name]="'PEOPLE2'"
+        [title]="t('profile.header.title')"
+        class=""
+      />
+      <app-module-card
+        [healthService]="peopleService"
+        [description]="t('who_is_who')+'?'"
+        [image]="'assets/images/colleague.jpg'"
+        [link]="'colleagues'"
+        [name]="'PEOPLE2'"
+        [title]="t('my_colleagues')"
+        class=""
+      />
+      <app-module-card
+        [healthService]="playService"
+        [description]="t('competitive_activities')"
+        [image]="'assets/images/play.jpg'"
+        [link]="'play'"
+        [name]="'PLAY'"
+        [title]="t('my_activities')"
+        class=""
+      />
+    </div>
+  </div>
+</ion-content>

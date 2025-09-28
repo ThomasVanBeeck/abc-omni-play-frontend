@@ -1,0 +1,32 @@
+<div class="flex flex-col gap-4 pt-3">
+  <a
+    class="flex flex-row align-middle"
+    href="mailto:{{profile?.mail!.toLowerCase()}}">
+    <fa-icon [icon]="faEnvelope" class="pr-4" size="2x" />
+    <ion-text class="text-center pt-1 underline"
+    >{{ profile?.mail!.toLowerCase() }}
+    </ion-text>
+  </a>
+  <a
+    *ngIf="profile?.mobilePhone"
+    class="flex flex-row align-middle"
+    href="tel:{{profile?.mobilePhone}}"
+  >
+    <fa-icon [icon]="faMobile" class="pl-0.5 pr-5" size="2x" />
+    <ion-text class="text-center pt-1">
+      {{ profile?.mobilePhone }}
+    </ion-text>
+  </a>
+
+  <a
+    *ngIf="profile?.businessPhones!.length > 0"
+    class="flex flex-row align-middle"
+    href="tel:{{profile?.businessPhones![0]}}"
+  >
+    <fa-icon [icon]="faPhone" class="pl-0.5 pr-4" size="2x" />
+    <ion-text class="text-center pt-1">
+      {{ profile?.businessPhones![0] }}
+    </ion-text
+    >
+  </a>
+</div>

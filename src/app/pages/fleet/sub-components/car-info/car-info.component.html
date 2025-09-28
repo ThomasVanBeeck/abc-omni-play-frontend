@@ -1,0 +1,53 @@
+<div *ngFor="let itemGroup of getAllItemGroupsWithIconsAndItems()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title
+        class="flex"
+        (click)="onClickDropDownCard(itemGroup.dropDownKey)"
+      >
+        <div class="text-2xl font-bold mr-2 z-10 text-left flex-1">
+          <fa-icon
+            class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+            [icon]="itemGroup.icon"
+            slot="start"
+          ></fa-icon>
+          {{itemGroup.title}}
+        </div>
+        <div class="text-right flex-1">
+          <fa-icon
+            class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+            [icon]="dropDownCards[itemGroup.dropDownKey] ? dropDownActive : dropDownInactive"
+            slot="end"
+          ></fa-icon>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content
+      *ngIf="dropDownCards[itemGroup.dropDownKey]"
+      class="min-w-full min-h-20 p-2 flex justify-center mb-2"
+    >
+      <div class="relative min-w-full">
+        <ion-item-group class="rounded-md" *ngFor="let item of itemGroup.items">
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.title}}</h2>
+              <p>
+                <ion-note slot="end"
+                >{{item.value}}
+                </ion-note
+                >
+              </p>
+            </ion-label>
+            <fa-icon
+              class="active:scale-110 focus:text-sky-600 text-gray-400 dark:text-white"
+              [icon]="copyClipboard"
+              (click)="writeToClipboard(item.clipboard)"
+              slot="end"
+            ></fa-icon>
+          </ion-item>
+        </ion-item-group>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</div>

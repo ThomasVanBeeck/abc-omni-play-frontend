@@ -1,0 +1,47 @@
+<div *ngIf="!isPlayRoute">
+  <ion-tabs id="footer" *transloco="let t">
+    <ion-tab-bar class="pt-2">
+      <ion-tab-button [routerLink]="['/settings']">
+        <fa-icon class="p-1" [icon]="faCog" size="2x"></fa-icon>
+        <ion-label>{{ t('settings') }}</ion-label>
+      </ion-tab-button>
+      <ion-tab-button class="h-56" [routerLink]="['/home']">
+        <app-omni-icon />
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/vcard']">
+        <fa-icon class="p-1" [icon]="faIdBadge" size="2x"></fa-icon>
+        <ion-label>{{ t('vcard') }}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>
+
+<div *ngIf="isPlayRoute">
+  <ion-tabs id="footer" *transloco="let t">
+    <ion-tab-bar class="p-1">
+      <ion-tab-button [routerLink]="['/play/summary']">
+        <fa-icon class="p-1" [icon]="faHomeUser" size="2x"></fa-icon>
+        <ion-label>{{ t('play_home') }}</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['/play/activities']">
+        <fa-icon class="p-1" [icon]="faTableTennis" size="2x"></fa-icon>
+        <ion-label>{{ t('play_activities') }}</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button class="h-56" [routerLink]="['/home']">
+        <app-omni-icon />
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['/play/ranking-xp']">
+        <fa-icon class="p-1" [icon]="faChartLine" size="2x"></fa-icon>
+        <ion-label>{{ t('play_rankings') }}</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['/play/users']">
+        <fa-icon class="p-1" [icon]="faUsers" size="2x"></fa-icon>
+        <ion-label>{{ t('play_users') }}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>

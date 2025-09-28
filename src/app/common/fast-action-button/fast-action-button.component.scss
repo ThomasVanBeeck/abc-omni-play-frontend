@@ -1,0 +1,39 @@
+.dots {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+
+  div {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background-color: #F2AE1D;
+  }
+
+  :nth-child(2) {
+    background-color: #1D559C;
+  }
+
+  :nth-child(3) {
+    background-color: #ED1C24;
+  }
+}
+
+ion-fab-button[data-desc] {
+  position: relative;
+}
+
+ion-fab-button[data-desc]::after {
+  position: absolute;
+  content: attr(data-desc);
+  z-index: 1;
+  right: 55px;
+  border-radius: 1.5em;
+  padding: 0.3em 0.5em;
+  bottom: 0.3em;
+  text-align: end;
+  background: dimgrey;
+  color: white;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+

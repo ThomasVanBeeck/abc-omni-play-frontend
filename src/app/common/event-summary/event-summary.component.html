@@ -1,0 +1,47 @@
+<!--<div class="flex flex-col">-->
+<!--  <ion-title *ngFor="let event of events" class="text-white">{{ event.title }}</ion-title>-->
+<!--</div>-->
+
+
+<ion-card *transloco="let t" class=" rounded-xl">
+  <ion-card-content class="flex flex-row gap-4">
+    <div class="flex flex-col w-1/2 gap-2">
+      <div class="flex flex-col">
+        <ion-text class="text-2xl text-red-500">{{ t(today).toUpperCase() }}</ion-text>
+        <ion-text class="text-3xl">{{ todayDate.getDate() }}</ion-text>
+      </div>
+      <div *ngFor="let event of eventsToday">
+        <app-event-card [event]="event" />
+      </div>
+    </div>
+    <div class="flex-col w-1/2">
+      <div class="flex flex-row gap-2">
+        <ion-text class="text-2xl">{{ t("tomorrow").toUpperCase() }}</ion-text>
+      </div>
+      <div *ngIf="eventsTomorrow.length > 0">
+        <div *ngFor="let event of eventsTomorrow" class="flex flex-col gap-2">
+          <app-event-card [event]="event" />
+        </div>
+      </div>
+      <div *ngIf="eventsTomorrow.length === 0">
+        <ion-text class="text-xl">{{ t("no_events_tomorrow") }}</ion-text>
+      </div>
+
+      <div *ngIf="nextEvents.length > 0">
+        <div class="flex flex-row gap-2">
+          <ion-text class="text-2xl">{{ t(nextEventDay!).toUpperCase() }}.</ion-text>
+          <ion-text class="text-2xl">{{ nextEventDate! }}</ion-text>
+          <ion-text class="text-2xl">{{ t(nextEventMonth!).toUpperCase() }}</ion-text>
+
+        </div>
+        <div class="flex flex-col gap-2">
+          <app-event-card *ngFor="let event of nextEvents" [event]="event" />
+        </div>
+      </div>
+      <div *ngIf="nextEvents.length === 0">
+        <ion-text class="text-xl">{{ t("no_events_soon") }}</ion-text>
+      </div>
+
+    </div>
+  </ion-card-content>
+</ion-card>

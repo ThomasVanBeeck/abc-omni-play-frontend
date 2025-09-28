@@ -1,0 +1,26 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { HomeSummaryRoutingModule } from './home-summary-routing.module';
+
+import { HomeSummaryPage } from './home-summary.page';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { TabsSummaryComponent } from 'src/app/common/tabs-summary/tabs-summary.component';
+import { LoadingIndicatorComponent } from 'src/app/common/loading-indicator/loading-indicator.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HomeSummaryRoutingModule,
+    FaIconComponent,
+    TabsSummaryComponent,
+    LoadingIndicatorComponent
+  ],
+  declarations: [HomeSummaryPage]
+})
+export class HomeSummaryPageModule {}

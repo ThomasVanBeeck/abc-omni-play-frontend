@@ -1,0 +1,21 @@
+<div *transloco="let t">
+  <div class="fixed bottom-2 right-2 z-10">
+    <ion-fab class=" bottom-0 right-0 bg-transparent">
+      <ion-fab-button class="border border-gray-500 rounded-full bg-gray-800 text-white" color="none">
+        <div class="dots flex flex-row gap-1">
+          <div class="opacity-100"></div>
+          <div class="opacity-100"></div>
+          <div class="opacity-100"></div>
+        </div>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="action.handlerOnClick()" *ngFor="let action of fastActions"
+                        [attr.data-desc]="t(action.title)"
+                        class="bg-gray-800 rounded-full"
+                        color="none">
+          <fa-icon [icon]="action.icon" class="text-white" />
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+</div>
